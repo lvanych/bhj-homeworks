@@ -16,16 +16,20 @@ class Game {
     this.lossElement.textContent = 0;
   }
 
-  registerEvents() {
-    /*
-      TODO:
-      Написать обработчик события, который откликается
-      на каждый введённый символ.
-      В случае правильного ввода символа вызываем this.success()
-      При неправильном вводе символа - this.fail();
-      DOM-элемент текущего символа находится в свойстве this.currentSymbol.
-     */
-  }
+    onKey(event) {
+        let rightSymbol = this.currentSymbol.textContent.toLowerCase();
+        let gotSymbol = event.key.toLowerCase();
+        
+        if (rightSymbol === gotSymbol) {
+            this.success();
+        } else {
+            this.fail();
+        }
+    }
+
+    registerEvents() {
+        document.addEventListener('keyup', this.onKey.bind(this));
+    }
 
   success() {
     if(this.currentSymbol.classList.contains("symbol_current")) this.currentSymbol.classList.remove("symbol_current");
