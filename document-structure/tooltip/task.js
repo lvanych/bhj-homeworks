@@ -4,7 +4,7 @@ for (let i = 0; i < links.length; i++) {
   let div = document.createElement("div");
   div.textContent = links[i].title;
   div.classList.add("tooltip");
-  links[i].insertAdjacentElement("afterBegin", div);
+  links[i].insertAdjacentElement("afterend", div);
 }
 
 let tooltips = document.querySelectorAll(".tooltip");
@@ -16,14 +16,14 @@ for (let n = 0; n < links.length; n++) {
 function showHint(e) {
   e.preventDefault();
   let el = e.target;
-  let tooltipActive = el.querySelector(".tooltip");
+  let tooltipActive = el.nextSibling;
 
   for (let tooltip of tooltips) {
     if (tooltip.classList.contains("tooltip_active")) {
-      tooltip.classList.remove("tooltip_active");
+      tooltip !== tooltipActive ? tooltip.classList.remove("tooltip_active") : null;
     }
   }
-  tooltipActive.classList.add("tooltip_active");
+  tooltipActive.classList.toggle("tooltip_active");
 
   let linkRect = el.getBoundingClientRect();
 
