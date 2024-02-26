@@ -9,9 +9,7 @@ const getCookie = (name) => {
   }
 };
 
-let flag = getCookie("noModal")
-
-if (!flag) {
+if (!getCookie("noModal")) {
   modal.classList.add("modal_active");
   modalClose.addEventListener("click", () => {
     modal.classList.remove("modal_active");

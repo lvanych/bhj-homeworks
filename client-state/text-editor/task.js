@@ -1,10 +1,8 @@
 let editor = document.getElementById('editor')
 
-if (localStorage.text) {
-    editor.value = localStorage.text
-}
+editor.value = localStorage.getItem('text')
 
-editor.addEventListener('change', () => {
+editor.addEventListener('input', () => {
     let text = editor.value.trim()
     localStorage.text = text
 })
